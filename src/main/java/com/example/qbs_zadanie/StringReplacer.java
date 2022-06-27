@@ -49,10 +49,19 @@ public class StringReplacer {
     }
 
     private void replaceStringsInFile(File file, String stringToBeReplaced, String stringToReplaceWith) throws IOException{
+        String[] stringToBeReplacedSplit = stringToBeReplaced.split("\n");
+        stringToBeReplaced = "";
+        for(int i=0; i < stringToBeReplacedSplit.length - 1; i++)
+            stringToBeReplaced += stringToBeReplacedSplit[i] + System.lineSeparator();
+        stringToBeReplaced += stringToBeReplacedSplit[stringToBeReplacedSplit.length-1];
+
         String data = FileUtils.readFileToString(file, Charset.forName("UTF-8"));
         int replacedCount = StringUtils.countMatches(data, stringToBeReplaced);
+        System.out.println(stringToBeReplaced);
+        System.out.println(data);
         data = data.replace(stringToBeReplaced, stringToReplaceWith);
         FileUtils.writeStringToFile(file, data, Charset.forName("UTF-8"));
-        replacedInfo.replacedFilesWithCount.put(file.getPath(), replacedCount);
+        if(replacedCount > 0)
+            replacedInfo.replacedFilesWithCount.put(file.getPath(), replacedCount);
     }
 }

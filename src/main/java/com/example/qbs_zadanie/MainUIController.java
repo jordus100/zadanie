@@ -11,6 +11,7 @@ import javafx.stage.DirectoryChooser;
 import javafx.stage.Screen;
 
 import java.io.File;
+import java.util.Map;
 
 public class MainUIController {
 
@@ -25,7 +26,7 @@ public class MainUIController {
     @FXML
     private TextArea stringToReplaceWith;
     @FXML
-    private TextArea outputTxt;
+    private TextArea outputTxtArea;
     @FXML
     private Button executeBtn;
 
@@ -43,10 +44,29 @@ public class MainUIController {
     }
 
     private void onExecuteBtnClicked(){
-        outputTxt.setText("");
-        if(fileExtensionTxtField.getText().contains(" "))
-            displayErrorMsg("Proszę wpisać tylko jedno rozszerzenie pliku, bez spacji");
-        new StringReplacer().replaceStrings(selectedDirectory, fileExtensionTxtField.getText(), stringToBeReplaced.getText(), stringToReplaceWith.getText());
+        outputTxtArea.setText("");
+        String outputText;
+        if(selectedDirectory == null) {
+            outputText = "Proszę najpierw wybrać folder";
+            outputTxtArea.setText(outputText);
+            return;
+        }
+        if(stringToBeReplaced.getText() == "" || stringToReplaceWith.getText() == ""){
+            outputText = "Proszę najpierw wpisać ciągi znaków, jakie mają być zamienione";
+            outputTxtArea.setText(outputText);
+            return;
+        }
+        ReplacedRef replacedInfo = new StringReplacer().replaceStrings(selectedDirectory, fileExtensionTxtField.getText().stripTrailing(), stringToBeReplaced.getText(), stringToReplaceWith.getText());
+        outputText = "Dokonano podmian w następujących (" + replacedInfo.replacedFilesWithCount.keySet().size() + ") plikach w następujących liczbach:\n";
+        for(Map.Entry<String, Integer> fileWithCount : replacedInfo.replacedFilesWithCount.entrySet()){
+            outputText += fileWithCount.getKey() + " : ";
+            outputText += fileWithCount.getValue().intValue() + "\n";
+        }
+        outputText += "\n Wystąpiły błędy w następujących plikach (" + replacedInfo.filesWithErrors.size() + ") :\n";
+        for(String errorFileName : replacedInfo.filesWithErrors){
+            outputText += "\n" + errorFileName;
+        }
+        outputTxtArea.setText(outputText);
     }
 
     private void displayErrorMsg(String msg){

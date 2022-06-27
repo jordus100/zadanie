@@ -9,7 +9,6 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.qbs_zadanie.MainUIController">
    <children>
       <VBox alignment="TOP_CENTER" layoutX="175.0" layoutY="54.0" maxHeight="500.0" maxWidth="400.0" prefHeight="664.0" prefWidth="661.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="100.0" AnchorPane.rightAnchor="100.0" AnchorPane.topAnchor="0.0">
@@ -42,6 +41,9 @@
                <VBox.margin>
                   <Insets bottom="50.0" />
                </VBox.margin>
+               <font>
+                  <Font size="14.0" />
+               </font>
             </TextField>
             <Label alignment="CENTER" prefHeight="17.0" prefWidth="792.0" text="Wpisz ciąg znaków, który ma być podmieniony">
                <VBox.margin>
@@ -55,6 +57,9 @@
                <VBox.margin>
                   <Insets bottom="50.0" />
                </VBox.margin>
+               <font>
+                  <Font size="14.0" />
+               </font>
             </TextArea>
             <Label alignment="CENTER" prefHeight="17.0" prefWidth="779.0" text="Wpisz ciąg znaków, na który ma być zamieniony ciąg znaków powyżej" textAlignment="CENTER" textOverrun="LEADING_ELLIPSIS" wrapText="true">
                <VBox.margin>
@@ -68,6 +73,9 @@
                <VBox.margin>
                   <Insets bottom="20.0" />
                </VBox.margin>
+               <font>
+                  <Font size="14.0" />
+               </font>
             </TextArea>
             <Button fx:id="executeBtn" mnemonicParsing="false" prefHeight="31.0" prefWidth="659.0" text="ZAMIEŃ">
                <font>
@@ -77,10 +85,13 @@
                   <Insets bottom="20.0" />
                </VBox.margin>
             </Button>
-            <TextArea fx:id="outputTxt" editable="false" prefHeight="200.0" prefWidth="200.0">
+            <TextArea fx:id="outputTxtArea" editable="false" prefHeight="200.0" prefWidth="200.0">
                <VBox.margin>
                   <Insets bottom="20.0" />
                </VBox.margin>
+               <font>
+                  <Font size="14.0" />
+               </font>
             </TextArea>
          </children>
       </VBox>
