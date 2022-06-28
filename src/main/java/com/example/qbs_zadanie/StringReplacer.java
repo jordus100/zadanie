@@ -57,8 +57,6 @@ public class StringReplacer {
 
         String data = FileUtils.readFileToString(file, Charset.forName("UTF-8"));
         int replacedCount = StringUtils.countMatches(data, stringToBeReplaced);
-        System.out.println(stringToBeReplaced);
-        System.out.println(data);
         data = data.replace(stringToBeReplaced, stringToReplaceWith);
         FileUtils.writeStringToFile(file, data, Charset.forName("UTF-8"));
         if(replacedCount > 0)

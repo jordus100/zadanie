@@ -69,9 +69,4 @@ public class MainUIController {
         outputTxtArea.setText(outputText);
     }
 
-    private void displayErrorMsg(String msg){
-
-    }
-
-
 }
